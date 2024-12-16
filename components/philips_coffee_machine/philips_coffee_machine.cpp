@@ -14,7 +14,7 @@ namespace esphome
         void PhilipsCoffeeMachine::setup()
         {
             power_pin_->setup();
-            power_pin_->pin_mode(gpio::FLAG_OUTPUT);
+            power_pin_->pin_mode(gpio::FLAG_OPEN_DRAIN);
             power_pin_->digital_write(initial_pin_state_);
         }
 

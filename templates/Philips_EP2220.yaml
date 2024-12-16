@@ -1,11 +1,11 @@
 substitutions:
   name: "philips-coffee-machine"
-  friendly_name: "Coffee Machine"
+  friendly_name: "Espresor Philips EP1220"
 
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
 
   project:
     name: TillFleisch.ESPHome-Philips-Smart-Coffee
@@ -21,6 +21,8 @@ logger:
   baud_rate: 0
 
 api:
+web_server:
+  port: 80  # Default port for HTTP (can be modified)
 
 ota:
   platform: esphome
@@ -30,32 +32,37 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   ap:
+    ssid: "ESP-Raz"
+    password: "Pop00467.."
 
 captive_portal:
 
 external_components:
   #- source: github://TillFleisch/ESPHome-Philips-Smart-Coffee@main
-  - source: /home/rsoare/projects/ESPHome-Philips-Smart-Coffee/components/
+  - source: /home/raz/PhilipsAutomation/components/
 uart:
   # UART connected to the mainboard
   - tx_pin: GPIO1
     rx_pin: GPIO3
     baud_rate: 115200
     id: uart_mainboard
+     #debug:
 
   # UART connected to the display
   - tx_pin: GPIO15
     rx_pin: GPIO13
     baud_rate: 115200
     id: uart_display
+      #debug:
 
 philips_coffee_machine:
-  display_uart: uart_display
+  display_uart: uart_mainboard
   mainboard_uart: uart_mainboard
-  power_pin: GPIO12
+  power_pin: GPIO16 ## NOT USED DOES NOT WORK FOR ME
   id: coffee_machine
   language: en-US
-
+  model: "EP_2220"   # Add this line to define the model
+  power_trip_delay: 3000ms  # Example: Power trip delay set to 1000ms (1 second)
 text_sensor:
   - platform: philips_coffee_machine
     controller_id: coffee_machine
@@ -67,7 +74,21 @@ switch:
     controller_id: coffee_machine
     name: "Power"
     icon: mdi:coffee-maker
+    clean: false ##If clean is set to false it will not rinse when powering on
+    inverted: false
 
+# Pin for controlling relay to cut ground to display
+  - platform: gpio
+    pin:        #Pin of relay
+      number: GPIO12
+      mode: OUTPUT_OPEN_DRAIN  # Set the pin to OUTPUT_OPEN_DRAIN
+    name: "Display Power Control"
+    id: display_power_control
+    inverted: true
+    icon: mdi:power
+    on_turn_on:
+      - delay: 1s  # Wait for 1 second before turning off
+      - switch.turn_off: display_power_control  # Turn off the relay
 button:
   - platform: philips_coffee_machine
     controller_id: coffee_machine
