@@ -4,7 +4,7 @@ This project integrates a Philips Series 1200 Coffee Machine using an ESP8266 mi
 
 For other models like Series 2200 and Series 3200 please refer to original project at 
 
-[![CI](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/actions/workflows/ci.yaml)
+(https://github.com/TillFleisch/ESPHome-Philips-Smart-Coffee/)
 
 This project integrates a Philips Series 2200/3200 Coffee Machine into into [Home Assistant](https://home-assistant.io) through [ESPHome](https://esphome.io).
 This component has been developed on a Philips `EP2220` and an ESP8266 but it will happily run on an ESP32.
