@@ -1,7 +1,7 @@
 # Philips Automation for EP1220 Espresso Machine with Webserver on ESP 8266
 
 
-# This Repo was started on the great work of TillFleisch
+## This Repo was started on the great work of TillFleisch
 
 This project integrates a Philips Series 1200 Coffee Machine using an ESP8266 microcontroller and ESPHome. 
 
