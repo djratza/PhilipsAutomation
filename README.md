@@ -26,7 +26,7 @@ A example configuration can be found [here](example.yaml)
 - **relay_pin**(**Required**, Pin to which the Relay is connected. This pin is used to temporarily turn of the display unit. In my case the relay needs to be set to OUTPUT_OPEN_DRAIN in order to be able to correctly trigger the display off and back on.
 - **power_message_repetitions**(**Optional**: uint): Determines how many message repetitions are used while turning on the machine. On some hardware combinations a higher value such as `25` is required to turn on the display successfully. Defaults to `5`.
 - **language**(**Optional**: int): Status sensor language. Select one of `en-US`, `de-DE`, `it-IT`. Defaults to `en-US`.
-- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`, `EP_3246`. Defaults to `EP_2220`. This code works with model: "EP_2220" as this works with ESP_1220 model.
+- **model**(**Optional**: int): Different models or revisions may use different commands. This option can be used to specify the command set used by this component. Select one of `EP_2220`, `EP_2235`, `EP_3243`, `EP_3246`. Defaults to `EP_2220`. This code works with model: "EP_2220" as this was intended like that.
 
 ## Philips Power switch
 
